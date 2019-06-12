@@ -1,0 +1,70 @@
+<!--ul class="nav nav-pills nav-justified">
+  <li class="active"><a routerLink="/Principal">Ir a inicio</a></li>
+  <li><a (click)="TraerTodos()">Todos los jugadores</a></li>
+  <li><a (click)="TraerGanadores()">Los ganadores</a></li>
+  <li><a (click)="TraerPerdedores()">Los perdedores</a></li>
+</ul>
+
+
+
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>usuario</th>
+      <th>cuit</th>
+      <th>sexo</th>
+      <th>gano</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let jugador of listado" >
+      <td>{{jugador.usuario}} </td>
+      <td>{{jugador.cuit}} </td> 
+      <td>{{jugador.sexo | sexo| uppercase}} </td> 
+      <td>{{jugador.gano}} </td> 
+      
+    </tr>
+   
+  </tbody>
+</table-->
+
+<!--div *ngFor="let juego of listado">
+
+<p> {{juego.nombre}} </p>
+<p> {{juego.jugador}} </p>
+
+</div-->
+<div class="fondo">
+  
+    <section id="tabs" class="project-tab">
+      <div class="container" >
+          <div class="row">
+              <div class="col-md-6" style="
+              margin-left: 25%;">
+                  
+                  <div class="tab-content" id="nav-tabContent">
+                      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                          <table class="table" cellspacing="0" style="text-align:center">
+                              <thead>
+                                    <th >Jugador</th>
+                                    
+                                  
+                              
+                              <tbody>
+                                <tr *ngFor="let jugador of listado" >
+                                    <td>{{jugador}} </td>
+                                   
+                                    
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                     
+                             
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <br><br>
+  </div>

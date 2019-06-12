@@ -1,0 +1,38 @@
+	<!-- Header section -->
+	<header class="header-section">
+      <div class="header-warp">
+        <div class="header-bar-warp d-flex">
+          <div>
+            <h2 class="titulo">
+          Buena Sonrisa</h2>
+        </div>
+          <!-- site logo -->				
+          <nav class="top-nav-area w-100" style="
+          padding-top: 15px;">
+            <div class="user-panel" >
+               <div *ngIf="!verificarSesion()" >
+              <div ><a routerLink="/Login" >Ingresá</a></div>
+              <div ><a routerLink="/Registro" >Registrate</a></div>
+            </div>
+             
+              <div *ngIf="verificarSesion()"><a routerLink="/" (click)="cerrarSesion()" >Cerrar sesion</a></div>
+            </div>
+            <!-- Menu -->
+            <ul class="main-menu primary-menu">
+              <li *ngIf="verificarSesion()"><a routerLink="/Principal">Inicio</a></li>
+              <li><a routerLink="/Sucursales">Sucursales</a>
+              </li>
+              <li><a>Sobre La clinica</a>
+                <ul class="sub-menu">
+                  <li><a href="https://github.com/facundoislas" target="blank">En Github</a></li>
+                  <li><a routerLink="/QuienSoy">Sobre la Clinica</a></li>
+                </ul>
+              </li>
+              
+              
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- Header section end -->

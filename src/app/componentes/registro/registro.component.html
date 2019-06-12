@@ -1,0 +1,114 @@
+<!--body>
+  <div class="jumbotron">
+    <h2 id="terminos">Terminos y condiciones</h2>
+    <p>El Gobierno de la República Argentina (en adelante el “Gobierno Nacional”) no es responsable por los daños y perjuicios que puedan surgir, incluyendo, sin límite, daños, pérdidas o gastos directos, indirectos, que surjan en relación con el uso de los Activos Digitales o la imposibilidad de uso, en relación con cualquier falla en el vencimiento, error, omisión, interrupción, defecto, demora en la operación o transmisión, virus de computadora o falla del sistema de línea, aún en el caso de que el Gobierno Nacional o sus representantes fueran informados sobre la posibilidad de dichos daños, pérdidas o gastos.</p>
+    <p>El Gobierno Nacional no controla ni garantiza la ausencia de virus ni de otros elementos en los contenidos que puedan producir alteraciones en su sistema informático (software y hardware) o en los documentos electrónicos y ficheros almacenados en su sistema informático.</p>
+    <p>El Gobierno Nacional no puede garantizar que la transmisión de información por parte de los Usuarios sea completamente segura. El Usuario asume este riesgo.</p>
+   
+  </div>
+  <strong><p>No leer lo anterior, es solo un ejemplo sacado de https://www.argentina.gob.ar/terminos-y-condiciones </p></strong>
+  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Acepto</button>
+  <button  class="cancelbtn"  routerLink="/Principal" style="width:auto;">No acepto</button>
+  <div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+    <form class="modal-content animate" >
+      <div class="container">
+        <label><b>Email</b></label>
+        <input type="text" placeholder="Ingresa tu correo" name="email" required>
+  
+        <label><b>Clave</b></label>
+        <input type="password" placeholder="Aca la clave" name="psw" required>
+  
+        <label><b>Repita la clave</b></label>
+        <input type="password" placeholder="Aca repeti la misa clave  de arriba" name="psw-repeat" required>
+        <input type="checkbox" checked="checked">Recordar mis datos
+        <p>creando la cuenta aceptando los<a  onclick="document.getElementById('id01').style.display='none'"  >Terminos y condiciones</a>.</p>
+  
+        <div class="clearfix">
+          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Me arrepenti</button>
+          <button type="submit" class="signupbtn">Registrarme</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <script>
+  // Get the modal
+  var modal = document.getElementById('id01');
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+  </script>
+  
+  </body-->
+  <body class="fondo">
+    <div class="container">
+    <!---heading---->
+        <header class="heading"> Formulario de Registro</header>
+     <!---Form starting----> 
+     <div class="row ">
+      <!--- For Name---->
+            <div class="col-sm-12">
+                <div class="row">
+              <div class="col-xs-4">
+                        <label class="firstname">Nombre</label> </div>
+                <div class="col-xs-8">
+                    <input type="text" name="fname" id="fname" placeholder="Enter your First Name" class="form-control ">
+                </div>
+             </div>
+        </div>
+        
+        <!-----For email---->
+        <div class="col-sm-12">
+            <div class="row">
+              <div class="col-xs-4">
+                    <label class="mail" >Correo :</label></div>
+              <div class="col-xs-8"	>	 
+                   <input type="email" name="email"  id="email"placeholder="Enter your email" class="form-control" >
+                </div>
+            </div>
+        </div>
+      <!-----For Password and confirm password---->
+             <div class="col-sm-12">
+                <div class="row">
+                <div class="col-xs-4">
+                        <label class="pass">Contraseña :</label></div>
+             <div class="col-xs-8">
+                      <input type="password" name="password" id="password" placeholder="Ingresa tu contra" class="form-control">
+            </div>
+             </div>
+         </div>
+         
+        <!-----------For Phone number-------->
+            <div class="col-sm-12">
+            <div class ="row">
+                    <div class="col-xs-4 ">
+                <label class="gender">Genero:</label>
+            </div>
+          
+              <div class="col-xs-4 male">	 
+                <input type="radio" name="gender"  id="gender" value="boy">Masculino
+            </div>
+            
+            <div class="col-xs-4 female">
+                <input type="radio"  name="gender" id="gender" value="girl" >Femenino
+              </div>
+         
+            </div>
+            <div class="col-sm-12">
+                <div class="btn btn-warning">Enviar</div>
+          </div>
+          <br>
+          <div class="col-sm-12">
+            <div class="btn btn-warning" routerLink="/">Loguearse</div>
+      </div>
+        </div>
+      </div>	 
+             
+        
+   </div>
+   
