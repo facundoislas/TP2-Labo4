@@ -6,11 +6,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyB-0QF1A2VINGfWr-VS0LzFGG4_Mj8FJLM",
-    authDomain: "usuarios-d42dc.firebaseapp.com",
-    databaseURL: "https://usuarios-d42dc.firebaseio.com",
-    projectId: "usuarios-d42dc",
-    storageBucket: "usuarios-d42dc.appspot.com",
-    messagingSenderId: "284760046985"
+    apiKey: "AIzaSyAXrh54tvTY8-HaI0oS4hxJneaF4iICuXw",
+    authDomain: "buenasonrisa-1cbf7.firebaseapp.com",
+    databaseURL: "https://buenasonrisa-1cbf7.firebaseio.com",
+    projectId: "buenasonrisa-1cbf7",
+    storageBucket: "",
+    messagingSenderId: "466902963212",
+    appId: "1:466902963212:web:e0004bf0695e4a9d"
   }
 };

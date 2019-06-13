@@ -64,7 +64,9 @@
 					
 					</div>
 					<div class="form-group" *ngIf="logeando">
+              <re-captcha (resolved)="resolved($event)" siteKey="6LeAl6gUAAAAAL7qrGMdJOxsTLP64CuSrndOVjIc"></re-captcha>
               <button  class="btn btn-primary" (click)="MoverBarraDeProgreso()" >Ingresar</button>
+              
               <button   class="btn btn-primary" (click)="admin()" >Ingresar como admin</button>
               <button class="btn btn-primary"  (click)="invitado()" >Ingresar como invitado</button>
           </div>

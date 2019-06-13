@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   logeando=true;
   logueado:boolean;
   ProgresoDeAncho:string;
+  captcha:boolean = false;
 
   clase="progress-bar progress-bar-info progress-bar-striped ";
 
@@ -63,7 +64,7 @@ export class LoginComponent implements OnInit {
   }
 
   MoverBarraDeProgreso() {
-    
+    if(this.captcha){
     this.logeando=false;
     this.clase="progress-bar progress-bar-danger progress-bar-striped active";
     this.progresoMensaje="Iniciando comprobacion"; 
@@ -101,6 +102,11 @@ export class LoginComponent implements OnInit {
           break;
       }     
     });
+    }
+    else
+    {
+      this.MostarMensaje("Por favor, resolver el captcha", true);
+    }
     //this.logeando=true;
   }
 
@@ -112,14 +118,14 @@ export class LoginComponent implements OnInit {
 
     admin()
     {
-      this.user.email="admin@gmail.com";
+      this.user.email="admin@sonrisa.com";
         this.user.password="111111";
     }
 
     invitado()
     {
-      this.user.email="invitado@gmail.com";
-        this.user.password="222222";
+      this.user.email="cliente1@gmail.com";
+        this.user.password="444444";
     }
 
 
@@ -136,4 +142,12 @@ export class LoginComponent implements OnInit {
       console.info("objeto",x);
     
      } 
+
+     resolved(captchaResponse: string) {
+      console.log(`Resolved captcha with response: ${captchaResponse}`);
+      this.captcha = true;
+      }
+
+     
+   
 }

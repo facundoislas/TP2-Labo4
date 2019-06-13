@@ -21,10 +21,11 @@ import { AgilidadAritmeticaComponent } from './componentes/agilidad-aritmetica/a
 import { MenuComponent } from './componentes/menu/menu.component';
 import { RuteandoModule } from './ruteando/ruteando.module';
 import { ListadoComponent } from './componentes/listado/listado.component';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import {AuthService} from '../app/servicios/auth.service';
+import {AuthService} from '../app/servicios/auth.service'; 
+import { RecaptchaModule } from 'ng-recaptcha';
 
 import {environment} from '../environments/environment';
 // declaro donde quiero que se dirija
@@ -98,7 +99,9 @@ import { EspecialistaPageComponent } from './componentes/especialista-page/espec
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    RecaptchaModule,
+    RecaptchaModule.forRoot()
     // NgbModule.forRoot(MiRuteo),
     // importo el ruteo
     // RouterModule.forRoot(MiRuteo)

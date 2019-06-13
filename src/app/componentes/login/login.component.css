@@ -168,12 +168,12 @@ margin-left: 4px;
     z-index: 1;
     left: 50%;
     bottom: 30px;
-    font-size: 17px;
+    font-size: 20px;
 }
 
 
 #snackbar.Ganador {
-    background-color: rgb(110, 47, 5);
+    background-color: rgb(223, 24, 24);
     color:white;
 }
 
