@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {AuthService} from '../../servicios/auth.service';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 import {Subscription} from "rxjs";
 import {TimerObservable} from "rxjs/observable/TimerObservable";
+import { controlNameBinding } from '@angular/forms/src/directives/reactive_directives/form_control_name';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,10 +26,13 @@ export class LoginComponent implements OnInit {
   logueado:boolean;
   ProgresoDeAncho:string;
   captcha:boolean = false;
+  codigoCaptcha:number;
+  codigoAleatorio:number;
 
   clase="progress-bar progress-bar-info progress-bar-striped ";
 
   constructor(
+    private db: AngularFirestore,
     private route: ActivatedRoute,
     private router: Router,
     public auth : AuthService) {
@@ -44,13 +51,16 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.generarCodigo()
   }
 
   Entrar() {
+    if(this.verificarCodigo()){
     this.auth.loginUser(this.user.email,this.user.password ).then((user) => {
       this.router.navigate(['/Principal']);
       sessionStorage.setItem("user",this.user.email);
       sessionStorage.setItem("muestra","true");
+      this.logueo();
       }
     )
      .catch(async err=>{
@@ -60,11 +70,18 @@ export class LoginComponent implements OnInit {
       this.MostarMensaje("Error al loguearse", true);
       this.logeando = true;
       });
+    }
+    else{
+      this.MostarMensaje("Codigo ingresado incorrecto, por favor reingresar", true);
+      this.codigoCaptcha = null;
+      this.generarCodigo();
+    }
     
   }
 
   MoverBarraDeProgreso() {
-    if(this.captcha){
+   if(this.verificarCodigo())
+   {
     this.logeando=false;
     this.clase="progress-bar progress-bar-danger progress-bar-striped active";
     this.progresoMensaje="Iniciando comprobacion"; 
@@ -102,11 +119,12 @@ export class LoginComponent implements OnInit {
           break;
       }     
     });
-    }
-    else
-    {
-      this.MostarMensaje("Por favor, resolver el captcha", true);
-    }
+  }
+  else{
+    this.MostarMensaje("Codigo ingresado incorrecto, por favor reingresar", true);
+    this.codigoCaptcha = null;
+    this.generarCodigo();
+  }
     //this.logeando=true;
   }
 
@@ -143,11 +161,50 @@ export class LoginComponent implements OnInit {
     
      } 
 
-     resolved(captchaResponse: string) {
+     /*resolved(captchaResponse: string) {
       console.log(`Resolved captcha with response: ${captchaResponse}`);
       this.captcha = true;
+      }*/
+      
+      generarCodigo()
+      {
+        this.codigoAleatorio = Math.floor(Math.random() * (999999 - 100000)) + 100000;
+        console.log(this.codigoAleatorio);
       }
 
-     
+      verificarCodigo()
+      {
+        console.log("codigo ingresasdo " , this.codigoCaptcha);
+        console.log("codigo aleatorio " ,  this.codigoAleatorio);
+        if(this.codigoAleatorio == this.codigoCaptcha)
+        {
+          return true;
+        }
+        else
+          return false
+      }
+
+     logueo()
+     {
+       let fecha = (Date.now()).toString();
+       let email = this.user.email;
+
+       this.db.collection("logueos").add({
+
+        email: email,
+        fecha: fecha
+  
+      })
+      .then(function(docRef) {
+        console.log("SSe guardo el logueo");
+        
+       
+    })
+    .catch(function(error) {
+        console.log("Error al registrar el logueo")
+        
+    });
+
+     }
    
 }

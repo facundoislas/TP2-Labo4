@@ -10,6 +10,13 @@ export class AuthService {
     console.log('Hello AuthProvider Provider');
   }
 
+  registerUser(email:string, password:string){
+    return this.afAuth.auth.createUserWithEmailAndPassword( email, password)
+    .then((res)=>{
+     console.log("el usuario se ha creado exitosamente")
+    })
+    .catch(err=>Promise.reject(err))
+ }
 
    // Login de usuario
  public loginUser(email:string, password:string){

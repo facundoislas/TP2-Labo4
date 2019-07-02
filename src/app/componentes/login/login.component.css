@@ -183,3 +183,15 @@ margin-left: 4px;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+.captcha{
+    background-color: red;
+    height: 50px;
+    width: 200px;
+    margin-left: 53px;
+    color: white;
+    margin-bottom: 13px;
+    text-align: center;
+    font-size: 34px;
+    font-style: oblique;
+    font-family: arial black;
+}

@@ -14,9 +14,12 @@
               <div ><a routerLink="/Login" >Ingresá</a></div>
               <div ><a routerLink="/Registro" >Registrate</a></div>
             </div>
-             
-              <div *ngIf="verificarSesion()"><a routerLink="/" (click)="cerrarSesion()" >Cerrar sesion</a></div>
+            <h4>{{muestraMail}}</h4>
+              <div *ngIf="verificarSesion()"><a routerLink="/" (click)="cerrarSesion()" style="color:rgb(22, 23, 20)">Cerrar sesion</a>
+                
+                
             </div>
+          </div>
             <!-- Menu -->
             <ul class="main-menu primary-menu">
               <li *ngIf="verificarSesion()"><a routerLink="/Principal">Inicio</a></li>
