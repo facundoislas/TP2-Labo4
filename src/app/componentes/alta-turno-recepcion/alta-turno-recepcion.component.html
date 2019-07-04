@@ -10,7 +10,7 @@
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="	fa fa-envelope-o " aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" name="email"  placeholder="correo" [(ngModel)]="unTurno.email"/>
+                    <input required type="text" class="form-control" name="email"  placeholder="correo" [(ngModel)]="unTurno.email"/>
                   </div>
                 </div>
                   </div>
@@ -20,7 +20,7 @@
             <div class="cols-sm-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-calendar fa-lg" aria-hidden="true"></i></span>
-                <input type="datetime-local" class="form-control" name="BornDate" id="BornDate"  placeholder="fecha de turno" [(ngModel)]="unTurno.fechaInicio"/>
+                <input type="datetime-local" class="form-control" required name="BornDate" id="BornDate"  placeholder="fecha de turno" [(ngModel)]="unTurno.fechaInicio"/>
               </div>
             </div>
               </div>
