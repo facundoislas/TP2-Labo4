@@ -46,6 +46,28 @@ export class CabeceraComponent implements OnInit {
       sessionStorage.clear();
     }
 
+    redirige()
+    {
+      let perfil = sessionStorage.getItem("tipo")
+      switch(perfil){
+        case "administrador": 
+          this.router.navigate(['Admin']);
+          break;
+          case "cliente": 
+          this.router.navigate(['Cliente']);
+          break;
+          case "recepcionista": 
+          this.router.navigate(['Recepcion']);
+          break;
+          case "especialista": 
+          this.router.navigate(['Especialista']);
+          break;
+        default:
+            this.router.navigate(['Login']);
+            break;
+      }
+    }
+
 
   ngOnInit() {
 

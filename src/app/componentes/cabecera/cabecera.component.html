@@ -22,13 +22,11 @@
           </div>
             <!-- Menu -->
             <ul class="main-menu primary-menu">
-              <li *ngIf="verificarSesion()"><a routerLink="/Principal">Inicio</a></li>
-              <li><a routerLink="/Sucursales">Sucursales</a>
-              </li>
-              <li><a>Sobre La clinica</a>
+              <li *ngIf="verificarSesion()"><a  (click)="redirige()">Inicio</a></li>
+              <li><a>Quien Soy</a>
                 <ul class="sub-menu">
                   <li><a href="https://github.com/facundoislas" target="blank">En Github</a></li>
-                  <li><a routerLink="/QuienSoy">Sobre la Clinica</a></li>
+                  <li><a routerLink="/QuienSoy">Sobre Mi</a></li>
                 </ul>
               </li>
               

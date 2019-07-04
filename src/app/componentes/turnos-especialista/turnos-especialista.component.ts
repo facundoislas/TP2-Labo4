@@ -15,10 +15,14 @@ export class TurnosEspecialistaComponent implements OnInit {
   email: string;
   estado:string;
   nombre: string;
+  muestra:boolean;
+  resena:string;
+  MostarMensaje:string
 
   constructor(private db: AngularFirestore) {
     this.email= sessionStorage.getItem("user");
-    this.coleccionTipadaFirebase= this.db.collection<any>('turnos', ref => ref.where("especialista", "==", "Ruben Garcia")); 
+    console.log(this.email);
+    this.coleccionTipadaFirebase= this.db.collection<any>('turnos', ref => ref.where("emailEspecialista", "==", this.email)); 
     //para el filtrado mirar la documentación https://firebase.google.com/docs/firestore/query-data/queries?authuser=0
     this.ListadoDeMascotas=this.coleccionTipadaFirebase.valueChanges();
     this.ListadoDeMascotas.subscribe(x => {
@@ -26,6 +30,37 @@ export class TurnosEspecialistaComponent implements OnInit {
         
     });
    }
+   mostrar(id:string)
+   {
+     console.log(id);
+     this.muestra = true;
+     
+   }
+
+   completar(id:string)
+  {
+        let washingtonRef = this.db.collection("turnos").doc(id);
+
+        // Set the "capital" field of the city 'DC'
+        return washingtonRef.update(
+          {
+          estado:'completado',
+          resena:this.resena
+        },
+        )
+        .then(function() {
+            console.log("Se completa el turno");
+            setTimeout(function(){ 
+              window.location.reload();
+            }, 3000);
+        })
+        .catch(function(error) {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+        });
+            
+        
+  }
 
   ngOnInit() {
   }

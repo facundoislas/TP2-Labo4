@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-// importo del module principal
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { LoginComponent } from '../componentes/login/login.component';
 import { ErrorComponent } from '../componentes/error/error.component';
 import { RegistroComponent } from '../componentes/registro/registro.component';
-import { CabeceraComponent } from '../componentes/cabecera/cabecera.component';
 import { QuienSoyComponent } from '../componentes/quien-soy/quien-soy.component'
-import { HomeComponent } from '../componentes/home/home.component';
 import { AdminPageComponent } from '../componentes/admin-page/admin-page.component';
 import { ClientePageComponent } from '../componentes/cliente-page/cliente-page.component';
 import { EspecialistaPageComponent } from '../componentes/especialista-page/especialista-page.component';
@@ -18,23 +14,50 @@ import { ListaTurnosClienteComponent } from './../componentes/lista-turnos-clien
 import {TurnosRecepcionComponent} from './../componentes/turnos-recepcion/turnos-recepcion.component'
 import {AltaTurnoRecepcionComponent} from './../componentes/alta-turno-recepcion/alta-turno-recepcion.component';
 import { TurnosEspecialistaComponent } from './../componentes/turnos-especialista/turnos-especialista.component'
+import {EstadisticasComponent} from './../componentes/estadisticas/estadisticas.component';
+import { Aux1Component } from './../componentes/aux1/aux1.component';
+import { RegistrosComponent } from './../componentes/registros/registros.component'
+  import { CancelarTurnoComponent } from '../componentes/cancelar-turno/cancelar-turno.component';
+import { TurnosAdminComponent } from '../componentes/turnos-admin/turnos-admin.component';
+import { EncuestasAdminComponent } from '../componentes/encuestas-admin/encuestas-admin.component';
+import {ActivadorService} from './../servicios/activador.service';
 
 // declaro donde quiero que se dirija
 const MiRuteo = [
+  //paginas que no son de usuarios logueados
 {path: 'QuienSoy' , component: QuienSoyComponent},
 {path: 'Registro' , component: RegistroComponent},
 {path: '' , component: LoginComponent},
 {path: 'Login' , component: LoginComponent},
-{path: 'Admin' , component: AdminPageComponent},
-{path: 'AltaAdmin', component: AltaAdminComponent},
-{path: 'Cliente' , component: ClientePageComponent},
-{path: 'pedirTurno', component: TurnosClienteComponent},
-{path: 'ListaTurnos', component: ListaTurnosClienteComponent},
-{path: 'Recepcion' , component: RecepcionPageComponent},
-{path: 'Especialista' , component: EspecialistaPageComponent},
-{path: 'TurnosRecepcion', component: TurnosRecepcionComponent},
-{path: 'AltaTurnoRecepcion', component: AltaTurnoRecepcionComponent},
-{path: 'turnosEspecialista', component: TurnosEspecialistaComponent},
+
+//Admin
+{path: 'Admin' , component: AdminPageComponent, canActivate: [ActivadorService]},
+{path: 'AltaAdmin', component: AltaAdminComponent, canActivate: [ActivadorService]},
+{path: 'Estadistica', component: EstadisticasComponent, canActivate: [ActivadorService]},
+{path: 'Estadisticas', component: Aux1Component,
+  children:
+  [{path: 'Registros', component: RegistrosComponent},
+  {path: 'TurnosAdmin', component: TurnosAdminComponent},
+  {path: 'EncuestasAdmin', component: EncuestasAdminComponent}], canActivate: [ActivadorService]
+},
+//Cliente
+
+{path: 'Cliente' , component: ClientePageComponent, canActivate: [ActivadorService]},
+{path: 'PedirTurno', component: TurnosClienteComponent, canActivate: [ActivadorService]},
+{path: 'ListaTurnos', component: ListaTurnosClienteComponent, canActivate: [ActivadorService]},
+
+//Recepcion
+{path: 'Recepcion' , component: RecepcionPageComponent, canActivate: [ActivadorService]},
+{path: 'TurnosRecepcion', component: TurnosRecepcionComponent, canActivate: [ActivadorService]},
+{path: 'AltaTurnoRecepcion', component: AltaTurnoRecepcionComponent, canActivate: [ActivadorService]},
+{path: 'CancelarTurno', component: CancelarTurnoComponent, canActivate: [ActivadorService]},
+
+//Especialista
+{path: 'Especialista' , component: EspecialistaPageComponent, canActivate: [ActivadorService]},
+{path: 'TurnosEspecialista', component: TurnosEspecialistaComponent, canActivate: [ActivadorService]},
+
+//De error
+
 {path: '**' , component: ErrorComponent},
 
 {path: 'error' , component: ErrorComponent}];

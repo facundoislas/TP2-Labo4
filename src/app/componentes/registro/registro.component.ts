@@ -49,7 +49,8 @@ export class RegistroComponent implements OnInit {
       console.log("Alta exitosa");
       console.log(this.unUsuario);
       sessionStorage.setItem('user', this.unUsuario.email);
-      this.router.navigate(['principal']);
+      sessionStorage.setItem('tipo', "cliente");
+      this.router.navigate(['Cliente']);
     })
     .catch(err=>{
      console.log("No se ha podido registrar el usuario");

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {AuthService} from '../../servicios/auth.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import {Usuario} from './../../clases/usuario';
 
 import {Subscription} from "rxjs";
 import {TimerObservable} from "rxjs/observable/TimerObservable";
@@ -31,6 +32,9 @@ export class LoginComponent implements OnInit {
 
   clase="progress-bar progress-bar-info progress-bar-striped ";
 
+  dbUsuarios: Observable<any[]>;
+
+  todosLosUsuarios : Usuario[];
   constructor(
     private db: AngularFirestore,
     private route: ActivatedRoute,
@@ -48,18 +52,83 @@ export class LoginComponent implements OnInit {
           else{
           this.logueado=true;  
           }
+
+          this.dbUsuarios = this.db.collection('usuarios').valueChanges();
+    this.todosLosUsuarios = new Array();
+    this.ObtenerUsuarios();
   }
+
+
+  ObtenerUsuarios(){
+    this.dbUsuarios.forEach(element => {
+
+      //console.info(element);
+
+      element.forEach(usuario => {
+
+        let unUsr = new Usuario();
+
+        unUsr.email = usuario.email;
+        unUsr.tipo = usuario.tipo;
+
+        this.todosLosUsuarios.push(unUsr);
+        
+      });
+
+      console.info(this.todosLosUsuarios);
+      
+    });
+  }
+
+  ObtenerPerfil(correo:string):string{    
+
+    let elPerfil:string = '';
+
+    this.todosLosUsuarios.forEach(element => {
+
+      if(correo == element.email){
+
+        console.log(element.tipo);        
+        elPerfil = element.tipo;
+
+      }
+      
+    });
+
+    return elPerfil;
+  }
+
 
   ngOnInit() {
     this.generarCodigo()
   }
 
   Entrar() {
+    let perfil = this.ObtenerPerfil(this.user.email);
     if(this.verificarCodigo()){
     this.auth.loginUser(this.user.email,this.user.password ).then((user) => {
-      this.router.navigate(['/Principal']);
+      
       sessionStorage.setItem("user",this.user.email);
+      sessionStorage.setItem("tipo",perfil);
+      
       sessionStorage.setItem("muestra","true");
+      switch(perfil){
+        case "administrador": 
+          this.router.navigate(['Admin']);
+          break;
+          case "cliente": 
+          this.router.navigate(['Cliente']);
+          break;
+          case "recepcionista": 
+          this.router.navigate(['Recepcion']);
+          break;
+          case "especialista": 
+          this.router.navigate(['Especialista']);
+          break;
+        default:
+            this.router.navigate(['Login']);
+            break;
+      }
       this.logueo();
       }
     )
@@ -186,7 +255,7 @@ export class LoginComponent implements OnInit {
 
      logueo()
      {
-       let fecha = (Date.now()).toString();
+       let fecha = Date.now();
        let email = this.user.email;
 
        this.db.collection("logueos").add({

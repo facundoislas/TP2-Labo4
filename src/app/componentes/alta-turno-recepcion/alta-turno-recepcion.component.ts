@@ -13,6 +13,8 @@ export class AltaTurnoRecepcionComponent implements OnInit {
   ListadoDeMascotas:Observable<any[]>;
   lista: Array<any> = [];
   unTurno: Turnos;
+  Mensajes:string;
+
   constructor(private db: AngularFirestore) { 
     this.unTurno = new Turnos();
 
@@ -29,7 +31,7 @@ export class AltaTurnoRecepcionComponent implements OnInit {
         case "imagenes":
           this.unTurno.sala = "IMAG08";
           break;
-        case "mecanica":
+        case "mecanico":
           this.unTurno.sala = "MECA09";
         break;
 
@@ -38,32 +40,43 @@ export class AltaTurnoRecepcionComponent implements OnInit {
 
   enviar()
   {
-    console.log(this.unTurno.email);
+    
     this.sala();
     this.unTurno.especialista = (<HTMLInputElement>document.getElementById("nombre")).value
-    console.log(this.unTurno);
 
-    
-    this.db.collection("turnos").add({
+    let idTime = Date.now().toString();
+    this.db.collection("turnos").doc(idTime).set({
 
       email: this.unTurno.email,
       especialidad: this.unTurno.especialidad,
       especialista: this.unTurno.especialista,
       estado:"pendiente",
       fechaInicio: this.unTurno.fechaInicio,
-      sala: this.unTurno.sala
+      sala: this.unTurno.sala,
+      id: idTime,
+      solicitante:'recepcion',
+      resena:"",
+      puntajeEsp:"",
+      puntajeCli:"",
+      experiencia:"",
+      estadoEncuesta:"pendiente"
 
     })
     .then(function(docRef) {
-      console.log("Se guarda el turno en base ");
+      console.log("guardo")
+      
       
      
   })
   .catch(function(error) {
-      alert("Error al registrar el turno, realizarlo nuevamente")
+    console.log(error);
       
   });
-    
+  this.MostarMensaje("Se ha guardado el turno");
+  setTimeout(function(){ 
+    window.location.reload();
+  }, 3000);
+  
   }
 
   aListar(e)
@@ -85,5 +98,24 @@ export class AltaTurnoRecepcionComponent implements OnInit {
   }
   ngOnInit() {
   }
+
+  MostarMensaje(mensaje:string="este es el mensaje",ganador:boolean=false) {
+    this.Mensajes=mensaje;    
+    var x = document.getElementById("snackbar");
+    if(ganador)
+      {
+        x.className = "show Ganador";
+      }else{
+        x.className = "show Perdedor";
+      }
+    var modelo=this;
+    setTimeout(function(){ 
+      x.className = x.className.replace("show", "");
+      
+     }, 3000);
+    console.info("objeto",x);
+  
+   }
+
 
 }

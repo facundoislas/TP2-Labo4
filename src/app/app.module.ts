@@ -54,6 +54,13 @@ import { ListaTurnosClienteComponent } from './componentes/lista-turnos-cliente/
 import { TurnosRecepcionComponent } from './componentes/turnos-recepcion/turnos-recepcion.component';
 import { AltaTurnoRecepcionComponent } from './componentes/alta-turno-recepcion/alta-turno-recepcion.component';
 import { TurnosEspecialistaComponent } from './componentes/turnos-especialista/turnos-especialista.component';
+import { EstadisticasComponent } from './componentes/estadisticas/estadisticas.component';
+import { Aux1Component } from './componentes/aux1/aux1.component';
+import { RegistrosComponent } from './componentes/registros/registros.component';
+import { CancelarTurnoComponent } from './componentes/cancelar-turno/cancelar-turno.component';
+import { TurnosAdminComponent } from './componentes/turnos-admin/turnos-admin.component';
+import { EncuestasAdminComponent } from './componentes/encuestas-admin/encuestas-admin.component';
+import { ActivadorService } from './servicios/activador.service';
 
 
 @NgModule({
@@ -76,7 +83,13 @@ import { TurnosEspecialistaComponent } from './componentes/turnos-especialista/t
     ListaTurnosClienteComponent,
     TurnosRecepcionComponent,
     AltaTurnoRecepcionComponent,
-    TurnosEspecialistaComponent
+    TurnosEspecialistaComponent,
+    EstadisticasComponent,
+    Aux1Component,
+    RegistrosComponent,
+    CancelarTurnoComponent,
+    TurnosAdminComponent,
+    EncuestasAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +109,7 @@ import { TurnosEspecialistaComponent } from './componentes/turnos-especialista/t
     // importo el ruteo
     // RouterModule.forRoot(MiRuteo)
   ],
-  providers: [ AngularFirestore, MiHttpService,AuthService],
+  providers: [ AngularFirestore, MiHttpService,AuthService, ActivadorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

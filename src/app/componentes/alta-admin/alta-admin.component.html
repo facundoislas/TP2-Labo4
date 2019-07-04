@@ -28,18 +28,35 @@
                         <label class="radio-inline" style="
                         margin-left: 16px;
                     ">
-                              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Cliente" [(ngModel)]="unUsuario.tipo"> Cliente
+                              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="cliente" [(ngModel)]="unUsuario.tipo"> Cliente
                         </label>
                             <label class="radio-inline" style="
                             margin-left: 16px;
                         ">
-                              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Recepcionista" [(ngModel)]="unUsuario.tipo"> Recepcionista
+                              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="recepcionista" [(ngModel)]="unUsuario.tipo"> Recepcionista
                             </label>
                             <label class="radio-inline" style="
                             margin-left: 16px;
                         ">
-                              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Especialista" [(ngModel)]="unUsuario.tipo"> Especialista
+                              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="especialista" [(ngModel)]="unUsuario.tipo"> Especialista
                             </label>
+                        </div>
+                        <div *ngIf="unUsuario.tipo == 'especialista' || empleado.tipo == 'mecanico' || empleado.tipo == 'imagenes'">
+                                <label class="radio-inline" style="
+                                margin-left: 16px;
+                            ">
+                                      <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="mecanico" > Mecanica
+                                </label>
+                                    <label class="radio-inline" style="
+                                    margin-left: 16px;
+                                ">
+                                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="imagenes" > Imagenes
+                                    </label>
+                                    <label class="radio-inline" style="
+                                    margin-left: 16px;
+                                ">
+                                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="clinico"> Clinico
+                                    </label>
                         </div>
 					
 					<button type="submit" class="btn btn-default button-register" (click)="enviar()">Dar de Alta</button>

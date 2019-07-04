@@ -15,6 +15,7 @@ export class TurnosClienteComponent implements OnInit {
   ListadoDeMascotas:Observable<any[]>;
   lista: Array<any> = [];
   unTurno: Turnos;
+  Mensajes:string;
   constructor(private db: AngularFirestore) { 
     this.unTurno = new Turnos();
 
@@ -31,7 +32,7 @@ export class TurnosClienteComponent implements OnInit {
         case "imagenes":
           this.unTurno.sala = "IMAG08";
           break;
-        case "mecanica":
+        case "mecanico":
           this.unTurno.sala = "MECA09";
         break;
 
@@ -44,16 +45,23 @@ export class TurnosClienteComponent implements OnInit {
     this.unTurno.email = sessionStorage.getItem("user");
     this.unTurno.especialista = (<HTMLInputElement>document.getElementById("nombre")).value
     console.log(this.unTurno);
-
+    let idTime = Date.now().toString();
     
-    this.db.collection("turnos").add({
+    this.db.collection("turnos").doc(idTime).set({
 
       email: this.unTurno.email,
       especialidad: this.unTurno.especialidad,
       especialista: this.unTurno.especialista,
       estado:"pendiente",
       fechaInicio: this.unTurno.fechaInicio,
-      sala: this.unTurno.sala
+      sala: this.unTurno.sala,
+      id: idTime,
+      solicitante:'cliente',
+      resena:"",
+      puntajeEsp:"",
+      puntajeCli:"",
+      experiencia:"",
+      estadoEncuesta:"pendiente"
 
     })
     .then(function(docRef) {
@@ -65,6 +73,10 @@ export class TurnosClienteComponent implements OnInit {
       alert("Error al registrar el turno, realizarlo nuevamente")
       
   });
+  this.MostarMensaje("Se ha guardado el turno");
+  setTimeout(function(){ 
+    window.location.reload();
+  }, 3000);
     
   }
 
@@ -89,5 +101,13 @@ export class TurnosClienteComponent implements OnInit {
   ngOnInit() {
     
   }
+
+
+  MostarMensaje(mensaje:string="este es el mensaje") {
+    this.Mensajes=mensaje;    
+    var x = document.getElementById("snackbar")
+        x.className = "show Ganador";
+  
+   }
 
 }

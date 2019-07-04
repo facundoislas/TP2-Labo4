@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,16 @@ public logout(){
   this.afAuth.auth.signOut().then(()=>{
     // hemos salido
   })
+}
+
+isLoggedIn() {
+  console.log("esto es afuera")
+  if (this.Session) {
+    console.log("entre a validacion")
+    return  true;
+  } else {
+// No user is signed in.
+  }
+  return false;
 }
 }
