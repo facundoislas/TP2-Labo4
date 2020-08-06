@@ -10,15 +10,15 @@ admin@sonrisa.com
 pass: 111111
 
 Especialistas:
-especialista1@sonrisa.com
-especialista2@sonrisa.com
-especialista4@sonrisa.com
+clinica@sonrisa.com
+mecanica@sonrisa.com
+imagenes@sonrisa.com
 
 todos con pass 111111
 
 Clientes:
 cliente1@gmail.com 
-cliente2@gmail.com
+fergomez@gmail.com
 
 tambien pass 111111
 
