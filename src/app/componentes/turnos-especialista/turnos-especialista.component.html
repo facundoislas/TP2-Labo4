@@ -26,8 +26,8 @@
                                       <td>{{turno.especialista}}</td>
                                       <td>{{turno.email}}</td>
                                       <td>{{turno.estado}}</td>
-                                      <td *ngIf="!muestra"><button (click)="mostrar(turno.id)" class="myButton">completar</button></td>
-                                      <td *ngIf="muestra"><button (click)="completar(turno.id)" class="myButton">Enviar</button></td>
+                                      <td *ngIf="!muestra"><button (click)="mostrar(turno.id)" class="myButton" id="estado" [hidden]="turno.estado == 'completado'|| turno.estado == 'cancelado'">completar</button></td>
+                                      <td *ngIf="muestra"><button (click)="completar(turno.id)" class="myButton" [hidden]="turno.estado == 'completado' || turno.estado == 'cancelado'">Enviar</button></td>
                                   </tr>
                                   
                               </tbody>

@@ -22,7 +22,7 @@ export class RegistrosComponent implements OnInit {
 
   constructor(private db: AngularFirestore) { 
 
-   
+    this.traerUser();
   }
 
   listarLogueo()
@@ -62,7 +62,7 @@ export class RegistrosComponent implements OnInit {
 
     this.turnosArray.forEach(element => {
 
-      if(element.especialidad == 'clinico')
+      if(element.especialidad == 'clinica')
         this.contClinico++;
         if(element.especialidad == 'mecanica')
         this.contMecanica++;
@@ -83,7 +83,7 @@ export class RegistrosComponent implements OnInit {
         this.listarLogueo();
         break;
         case 'turnos':
-            this.traerUser();
+          this.traerUser();
             this.tipo = 'turnos';
             
             console.log(this.turnosArray);

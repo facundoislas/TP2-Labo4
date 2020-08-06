@@ -122,7 +122,7 @@ export class LoginComponent implements OnInit {
           case "recepcionista": 
           this.router.navigate(['Recepcion']);
           break;
-          case "especialista": 
+          case "empleado": 
           this.router.navigate(['Especialista']);
           break;
         default:

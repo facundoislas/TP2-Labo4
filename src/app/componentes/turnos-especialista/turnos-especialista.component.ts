@@ -36,9 +36,15 @@ export class TurnosEspecialistaComponent implements OnInit {
      this.muestra = true;
      
    }
+   isInvalid()
+   {
+     if((<HTMLInputElement>document.getElementById("estado")).value == "completado" )
+      return true;
+   }
 
    completar(id:string)
   {
+
         let washingtonRef = this.db.collection("turnos").doc(id);
 
         // Set the "capital" field of the city 'DC'

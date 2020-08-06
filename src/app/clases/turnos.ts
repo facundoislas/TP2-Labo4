@@ -14,5 +14,6 @@ export class Turnos {
     public puntajeEsp: string;
     public puntajeCli:string;
     public estadoEncuesta:string;
+    public emailEspecialista;
     
 }

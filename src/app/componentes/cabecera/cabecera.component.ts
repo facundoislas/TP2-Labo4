@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../servicios/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-cabecera',
@@ -12,6 +13,7 @@ export class CabeceraComponent implements OnInit {
 
   logueado:boolean;
   muestraMail:string;
+  ruta:string;
   
 
   constructor( public auth : AuthService,
@@ -23,7 +25,10 @@ export class CabeceraComponent implements OnInit {
             }
     verificarSesion()
     {
-      const session = sessionStorage.getItem('user');
+
+
+      const session = sessionStorage.getItem('user');     
+  
 
             if(session==null)
             {
@@ -32,7 +37,11 @@ export class CabeceraComponent implements OnInit {
             else{
               this.muestraMail = session;
             return true;  
+            
             }
+
+            
+            
     }
 
     cerrarSesion(){
@@ -59,7 +68,7 @@ export class CabeceraComponent implements OnInit {
           case "recepcionista": 
           this.router.navigate(['Recepcion']);
           break;
-          case "especialista": 
+          case "empleado": 
           this.router.navigate(['Especialista']);
           break;
         default:
@@ -67,6 +76,12 @@ export class CabeceraComponent implements OnInit {
             break;
       }
     }
+
+    getPhotoUrl()
+  {
+     
+  }
+
 
 
   ngOnInit() {

@@ -38,7 +38,8 @@ export class AltaAdminComponent implements OnInit {
       tipo: this.unUsuario.tipo,
       id:  this.unUsuario.tipo +" - " + this.unUsuario.email,
       foto:  "sin foto",
-      nombre: this.unUsuario.nombre
+      nombre: this.unUsuario.nombre,
+      apellido: this.unUsuario.apellido
 
     })
     .then(function(docRef) {
@@ -54,7 +55,8 @@ export class AltaAdminComponent implements OnInit {
   if( this.coleccionTipadaFirebase= this.db.collection<any>('usuarios', ref => ref.where("email", "==", this.unUsuario.email))){
     this.registrar();
   }
-  if(this.unUsuario.tipo == "especialista")
+
+  if(this.unUsuario.tipo == "empleado")
   {
       this.altaEmpleado();
   }
@@ -84,7 +86,8 @@ export class AltaAdminComponent implements OnInit {
 
       email: this.unUsuario.email,
       especialidad: this.empleado.especialidad,
-      nombre: this.unUsuario.nombre
+      nombre: this.unUsuario.nombre,
+      apellido: this.unUsuario.apellido
 
     })
     .then(function(docRef) {

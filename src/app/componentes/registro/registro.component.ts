@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 //para poder hacer las validaciones
 import { Validators, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import * as firebase from 'firebase';
+import {finalize} from 'rxjs/operators'
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -18,6 +20,8 @@ export class RegistroComponent implements OnInit {
 
   unUsuario: Usuario;
   items: Observable<any[]>;
+  public ref;
+  public URLFoto;
 
   constructor( private db: AngularFirestore, private storage: AngularFireStorage, private auth : AuthService,  private router : Router) {
     this.unUsuario = new Usuario();
@@ -32,11 +36,9 @@ export class RegistroComponent implements OnInit {
     let id= "cliente - "+this.unUsuario.email;
     let file = e.target.files[0];
     let filePath = 'clientes/'+id+'.jpg';
-    let ref = this.storage.ref(filePath);
+    this.ref = this.storage.ref(filePath);
     let task = this.storage.upload(filePath, file);
-    
   }
-
 
   enviar()
   {
@@ -44,7 +46,29 @@ export class RegistroComponent implements OnInit {
     this.unUsuario.id = "cliente - "+this.unUsuario.email;
     this.unUsuario.foto = "cliente - "+this.unUsuario.email;
     console.log(this.unUsuario);
-    this.auth.registerUser(this.unUsuario.email,this.unUsuario.clave)
+    
+
+    this.db.collection("usuarios").doc("cliente - " + this.unUsuario.email).set({
+
+      email: this.unUsuario.email,
+      clave: this.unUsuario.clave,
+      tipo: "cliente",
+      id: "cliente - "+this.unUsuario.email,
+      foto:  "cliente - "+this.unUsuario.email,
+      nombre: this.unUsuario.nombre,
+      apellido: this.unUsuario.apellido,
+
+    })
+    .then(function(docRef) {
+      console.log("Se guarda el usuario en base ");
+     
+  })
+  .catch(function(error) {
+      alert("Error al registrarse, realizarlo nuevamente")
+      console.error("Error al escribir el usuario", error);
+  });
+
+  this.auth.registerUser(this.unUsuario.email,this.unUsuario.clave)
     .then((unUsuario) => {
       console.log("Alta exitosa");
       console.log(this.unUsuario);
@@ -56,24 +80,6 @@ export class RegistroComponent implements OnInit {
      console.log("No se ha podido registrar el usuario");
     })
 
-    this.db.collection("usuarios").doc("cliente - " + this.unUsuario.email).set({
-
-      email: this.unUsuario.email,
-      clave: this.unUsuario.clave,
-      tipo: "cliente",
-      id: "cliente - "+this.unUsuario.email,
-      foto:  "cliente - "+this.unUsuario.email,
-      nombre: this.unUsuario.nombre
-
-    })
-    .then(function(docRef) {
-      console.log("Se guarda el usuario en base ");
-     
-  })
-  .catch(function(error) {
-      alert("Error al registrarse, realizarlo nuevamente")
-      console.error("Error al escribir el usuario", error);
-  });
   }
 
 

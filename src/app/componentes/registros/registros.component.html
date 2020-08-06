@@ -25,7 +25,7 @@
                                         </thead>
                                         <tbody style="text-align: center" *ngFor="let turno of lista">
                                             <tr >
-                                                <td>{{turno.fecha | date:'medium'}}</td>
+                                                <td rowspan="1">{{turno.fecha | date:'dd-MM-yyyy h:mm a'}}</td>
                                                 <td>{{turno.email}}</td>
                                                 
                                             </tr>

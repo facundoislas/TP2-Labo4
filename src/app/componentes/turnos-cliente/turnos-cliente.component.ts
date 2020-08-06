@@ -26,13 +26,13 @@ export class TurnosClienteComponent implements OnInit {
   {
     switch(this.unTurno.especialidad)
     {
-      case "clinico": 
+      case "clinica": 
         this.unTurno.sala = "CONS0" + (Math.floor(Math.random()*(7-1) + 1).toString());
         break;
         case "imagenes":
           this.unTurno.sala = "IMAG08";
           break;
-        case "mecanico":
+        case "mecanica":
           this.unTurno.sala = "MECA09";
         break;
 
@@ -44,12 +44,14 @@ export class TurnosClienteComponent implements OnInit {
     this.sala();
     this.unTurno.email = sessionStorage.getItem("user");
     this.unTurno.especialista = (<HTMLInputElement>document.getElementById("nombre")).value
+    this.unTurno.emailEspecialista = (<HTMLInputElement>document.getElementById("emailEspecialista")).value
     console.log(this.unTurno);
     let idTime = Date.now().toString();
     
     this.db.collection("turnos").doc(idTime).set({
 
       email: this.unTurno.email,
+      emailEspecialista: this.unTurno.emailEspecialista,
       especialidad: this.unTurno.especialidad,
       especialista: this.unTurno.especialista,
       estado:"pendiente",
@@ -61,7 +63,8 @@ export class TurnosClienteComponent implements OnInit {
       puntajeEsp:"",
       puntajeCli:"",
       experiencia:"",
-      estadoEncuesta:"pendiente"
+      estadoEncuesta:"pendiente",
+      
 
     })
     .then(function(docRef) {

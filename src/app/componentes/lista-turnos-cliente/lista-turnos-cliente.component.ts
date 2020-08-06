@@ -22,6 +22,8 @@ export class ListaTurnosClienteComponent implements OnInit {
   muestra2:boolean;
   turno2: Turnos;
   id:string;
+  Mensajes:string;
+
   constructor(private db: AngularFirestore) {
     this.turno2 = new Turnos();
     this.email= sessionStorage.getItem("user");
@@ -40,9 +42,9 @@ export class ListaTurnosClienteComponent implements OnInit {
   }
 
   encuestasPendientes(){
-    this.coleccionTipadaFirebase= this.db.collection<any>('turnos', ref => ref.where("email", "==", this.email)); 
-    this.coleccionTipadaFirebase= this.db.collection<any>('turnos', ref => ref.where("estado", "==", "completado")); 
-    this.coleccionTipadaFirebase= this.db.collection<any>('turnos', ref => ref.where("estadoEncuesta", "==", "pendiente"));
+    this.coleccionTipadaFirebase= this.db.collection<any>('turnos', ref => ref.where("email", "==", this.email).where("estadoEncuesta",  "==", "pendiente")); 
+    /*this.coleccionTipadaFirebase= this.db.collection<any>('turnos', ref => ref.where("estadoEncuesta", "==", "pendiente"));
+    this.coleccionTipadaFirebase= this.db.collection<any>('turnos', ref => ref.where("estado", "==", "completado")); */
     //para el filtrado mirar la documentación https://firebase.google.com/docs/firestore/query-data/queries?authuser=0
     this.ListadoDeMascotas=this.coleccionTipadaFirebase.valueChanges();
     this.ListadoDeMascotas.subscribe(x => {
@@ -77,16 +79,37 @@ export class ListaTurnosClienteComponent implements OnInit {
         )
         .then(function() {
             console.log("Se completa la encuesta");
-            
+            setTimeout(function(){ 
+              window.location.reload();
+            }, 1000);
         })
         .catch(function(error) {
             // The document probably doesn't exist.
             console.error("Error updating document: ", error);
         });
+        
         this.muestra = false;
+        this.MostarMensaje("Se ha guardado la encuesta");
+  
         
   }
   
+  MostarMensaje(mensaje:string="este es el mensaje",ganador:boolean=false) {
+    this.Mensajes=mensaje;    
+    var x = document.getElementById("snackbar");
+    if(ganador)
+      {
+        x.className = "show Ganador";
+      }else{
+        x.className = "show Perdedor";
+      }
+    var modelo=this;
+    setTimeout(function(){ 
+      x.className = x.className.replace("show", "");
+      
+     }, 3000);
+    console.info("objeto",x);
   
+   }
 
 }

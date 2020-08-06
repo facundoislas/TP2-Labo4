@@ -12,6 +12,7 @@ import { Turnos } from './../../clases/turnos';
 
 export class CancelarTurnoComponent implements OnInit {
   @Input() idTurno: string;
+  @Input() estado: string;
   coleccionTipadaFirebase:AngularFirestoreCollection<any>;
   ListadoDeMascotas:Observable<any[]>;
   lista: Array<any> = [];
@@ -31,7 +32,8 @@ export class CancelarTurnoComponent implements OnInit {
         // Set the "capital" field of the city 'DC'
         return washingtonRef.update(
           {
-          estado:'cancelado'
+          estado:'cancelado',
+          estadoEncuesta:'no aplica'
         },
         )
         .then(function() {

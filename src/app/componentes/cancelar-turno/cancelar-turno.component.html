@@ -1,1 +1,1 @@
-<button (click)="cancelar()" class="myButton">Cancelar Turno</button>
+<button (click)="cancelar()" class="myButton" [hidden]="estado != 'pendiente'">Cancelar Turno</button>

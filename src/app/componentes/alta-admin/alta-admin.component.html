@@ -7,10 +7,15 @@
 				<form class="form-horizontal form-width">
 				<div class="row form-row">
 					<div class="col-md-12 sign-up-header">Alta de clientes/empleados</div>
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-7">
 						
 						<input type="text" class="form-control" id="first-name" name="first-name" placeholder="nombre" [(ngModel)]="unUsuario.nombre" required>
+                    </div>
+                    <div class="form-group col-md-7">
+						
+						<input type="text" class="form-control" id="first-name" name="first-name" placeholder="apellido" [(ngModel)]="unUsuario.apellido" required>
 					</div>
+
 
 					<div class="form-group col-md-12">
 						
@@ -20,42 +25,32 @@
                     ">
 					</div>
 
-					<div class="form-group col-md-6">
+					<div class="form-group col-md-7">
 						<input class="form-control" type="password"  id="password" name="password" [(ngModel)]="unUsuario.clave" required placeholder="clave asignada">
                     </div>
                     
                     <div class="col-md-12 radio-padding">	
                         <label class="radio-inline" style="
-                        margin-left: 16px;
-                    ">
+                        margin-left: 16px;">
                               <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="cliente"required [(ngModel)]="unUsuario.tipo"> Cliente
                         </label>
-                            <label class="radio-inline" style="
-                            margin-left: 16px;
-                        ">
-                              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="recepcionista" [(ngModel)]="unUsuario.tipo"> Recepcionista
+                            <label class="radio-inline" style="margin-left: 16px;">
+                              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="empleado" [(ngModel)]="unUsuario.tipo"> Empleado
                             </label>
-                            <label class="radio-inline" style="
-                            margin-left: 16px;
-                        ">
-                              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="especialista" [(ngModel)]="unUsuario.tipo"> Especialista
-                            </label>
-                        </div>
-                        <div *ngIf="unUsuario.tipo == 'especialista' || empleado.tipo == 'mecanico' || empleado.tipo == 'imagenes'">
-                                <label class="radio-inline" style="
-                                margin-left: 16px;
-                            ">
-                                      <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="mecanico" > Mecanica
+                            
+                             </div>
+                        <div *ngIf="unUsuario.tipo == 'empleado'">
+                                <label class="radio-inline" style="margin-left: 16px; ">
+                                      <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="mecanica" [(ngModel)]="empleado.especialidad"> Mecanico
                                 </label>
-                                    <label class="radio-inline" style="
-                                    margin-left: 16px;
-                                ">
-                                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="imagenes" > Imagenes
+                                    <label class="radio-inline" style="margin-left: 16px; ">
+                                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="imagenes" [(ngModel)]="empleado.especialidad"> Imagenes
                                     </label>
-                                    <label class="radio-inline" style="
-                                    margin-left: 16px;
-                                ">
-                                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="clinico"> Clinico
+                                    <label class="radio-inline" style=" margin-left: 16px;">
+                                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="clinica" [(ngModel)]="empleado.especialidad">Clinico
+                                    </label>
+                                    <label class="radio-inline" style="margin-left: 16px; ">
+                                      <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="recepcionista" [(ngModel)]="empleado.especialidad"> Recepcionista
                                     </label>
                         </div>
 					

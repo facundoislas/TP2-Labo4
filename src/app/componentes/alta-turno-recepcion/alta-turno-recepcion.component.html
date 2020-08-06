@@ -32,7 +32,7 @@
 
                <div class="col-md-12 radio-padding" (change)="aListar($event)">	
                 <label class="radio-inline">
-                      <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="clinico" [(ngModel)]="unTurno.especialidad"> Consulta
+                      <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="clinica" [(ngModel)]="unTurno.especialidad"> Consulta
                 </label>
                 <br>
                     <label class="radio-inline">
@@ -40,7 +40,7 @@
                     </label>
                     <br>
                     <label class="radio-inline">
-                      <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="mecanico" [(ngModel)]="unTurno.especialidad"> Mecanica Dental
+                      <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="mecanica" [(ngModel)]="unTurno.especialidad"> Mecanica Dental
                     </label>
                 </div>
                 
@@ -52,7 +52,7 @@
           <div *ngIf="unTurno.especialidad" >
           <label>Seleccione profesional</label>
           <select  >
-            <option *ngFor="let esp of lista" id="nombre">{{esp.nombre}}</option>
+            <option *ngFor="let esp of lista" id="nombre">{{esp.apellido}} {{esp.nombre}}</option>
           </select>
         </div>
           <br><br>
